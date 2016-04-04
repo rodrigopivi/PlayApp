@@ -5,15 +5,15 @@ It's intended to be an example implementation of all of this technologies playin
 
 ### Universal web application
 
-![Universal Web application](http://gfycat.com/TanVelvetyBarbet "Universal Web application")
+![Universal Web application](https://raw.githubusercontent.com/rodrigopivi/PlayApp/master/public/playAppWeb.gif "Universal Web application")
 
 ### React-native iOS application
 
-![React-native iOS application](http://gfycat.com/UnsightlySilentDanishswedishfarmdog "React-native iOS application")
+![React-native iOS application](https://raw.githubusercontent.com/rodrigopivi/PlayApp/master/public/playAppIOS.gif "React-native iOS application")
 
 ### React-native android application
 
-![React-native android application](http://gfycat.com/GrizzledWaterloggedHackee "React-native android application")
+![React-native android application](https://raw.githubusercontent.com/rodrigopivi/PlayApp/master/public/playAppAndroid.gif "React-native android application")
 
 ## Features
 Web, iOS and android apps running under the same codebase
