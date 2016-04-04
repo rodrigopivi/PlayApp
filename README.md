@@ -58,8 +58,7 @@ Setup virtual hostname. Edit /etc/hosts and add this:
 
 Make sure rethinkdb is running.
 
-To run web development server (Using Webpack dev server with react HMR)
-(This is thought so that you use a Typescript friendly IDE with progressive builds):
+To run web development server (runs webpack dev server with react HMR)
 ```
 gulp
 ```
@@ -100,7 +99,7 @@ Rodrigo Pimentel
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2015 Rodrigo Pimentel
+Copyright (c) 2016 Rodrigo Pimentel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
