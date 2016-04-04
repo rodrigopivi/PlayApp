@@ -1,3 +1,7 @@
+
+
+[![Dependency Status](https://david-dm.org/rodrigopivi/playApp.svg)](https://david-dm.org/rodrigopivi/playApp.svg) [![devDependency Status](https://david-dm.org/rodrigopivi/playApp/dev-status.svg)](https://david-dm.org/rodrigopivi/playApp/dev-status.svg)
+
 # Real-time chat application on top of React, React-Native, Relay, GraphQL, RethinkDB and Typescript
 It's intended to be an example implementation of all of this technologies playing together.
 
