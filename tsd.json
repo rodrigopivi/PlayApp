@@ -1,0 +1,54 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "koa/koa.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "jsonwebtoken/jsonwebtoken.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "socket.io/socket.io.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "rethinkdb/rethinkdb.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "bluebird/bluebird.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "moment/moment.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "moment/moment-node.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "winston/winston.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "node/node.d.ts": {
+      "commit": "d22516f9f089de107d7e7d5938566377370631f6"
+    },
+    "react/react.d.ts": {
+      "commit": "d22516f9f089de107d7e7d5938566377370631f6"
+    },
+    "react/react-dom.d.ts": {
+      "commit": "d22516f9f089de107d7e7d5938566377370631f6"
+    },
+    "react-router/react-router.d.ts": {
+      "commit": "d22516f9f089de107d7e7d5938566377370631f6"
+    },
+    "react-router/history.d.ts": {
+      "commit": "d22516f9f089de107d7e7d5938566377370631f6"
+    },
+    "material-ui/material-ui.d.ts": {
+      "commit": "ca92a5b250433c38230b5f4138b36453862342bf"
+    },
+    "whatwg-fetch/whatwg-fetch.d.ts": {
+      "commit": "2f47c75835b837777a85287611703d683b0aaa83"
+    }
+  }
+}
