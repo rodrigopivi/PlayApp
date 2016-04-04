@@ -33,7 +33,7 @@ Secured GraphQL endpoint.
 ## What's next
 This is a WIP, and there are a lot of things to improve.
 
-Relay does support subscriptions atm, as a temporal solution, this project uses a custom network
+Relay does not support subscriptions atm, as a temporal solution, this project uses a custom network
 layer that hijacks selected graphql queries to push the real time messages to Relay store.
 
 There is a bug with React-Native websockets implementation that is not sending the secure auth cookies at the handshake,
