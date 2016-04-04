@@ -24,20 +24,21 @@ Web, iOS and android apps running under the same codebase
 
 Server side rendering support thanks to isomorphic-relay and isomorphic-relay-router.
 
-Great real time support thanks to RethinkDB.
+Great real time support thanks to RethinkDB and Websockets.
 
-User authentication using JWT.
+User authentication using JWT with httpOnly cookies.
 
+Secured GraphQL endpoint.
 
 ## What's next
 This is a WIP, and there are a lot of things to improve.
 
-Relay does support for subscriptions yet, as a temporal solution, this project uses a custom network
-layer and pushes the websocket messages to Relay.
+Relay does support subscriptions atm, as a temporal solution, this project uses a custom network
+layer that hijacks selected graphql queries to push the real time messages to Relay store.
 
-There is a bug with React-Native websockets implementation that is not sending the cookies at the handshake,
-because of this the restricted access to the websocket has being disabled temporarily until this is solved,
-or maybe should consider using the swift socket.io implementation.
+There is a bug with React-Native websockets implementation that is not sending the secure auth cookies at the handshake,
+because of this the restricted access to the websocket has being disabled temporarily until this is fixed, a workaround
+would be to use the swift socket.io implementation. 
 
 ## Setup:
 Install Rethinkdb and nvm with node v5.9.0.
