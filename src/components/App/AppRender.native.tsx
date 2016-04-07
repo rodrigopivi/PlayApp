@@ -50,7 +50,6 @@ const thunk = require('redux-thunk').default
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
 const store = createStoreWithMiddleware(reducer)
 
-
 export default class App extends React.Component<any, any> {
     constructor(props, context) { super(props, context) }
     public render() {

@@ -26,7 +26,7 @@ Server side rendering support thanks to isomorphic-relay and isomorphic-relay-ro
 
 Great real time support thanks to RethinkDB and Websockets.
 
-User authentication using JWT with httpOnly cookies.
+User registration and authentication using JWT with httpOnly cookies.
 
 Secured GraphQL endpoint.
 
@@ -38,10 +38,16 @@ layer that hijacks selected graphql queries to push the real time messages to Re
 
 There is a bug with React-Native websockets implementation that is not sending the secure auth cookies at the handshake,
 because of this the restricted access to the websocket has being disabled temporarily until this is fixed, a workaround
-would be to use the swift socket.io implementation. 
+would be to use the swift socket.io implementation.
 
 ## Setup:
 Install Rethinkdb and nvm with node v5.9.0.
+
+Setup virtual hostname. Edit /etc/hosts and add this:
+```
+127.0.0.1 play.dev
+```
+Install react-native and gulp globally, then install deps and run the dev server
 
 ```
 npm i -g react-native-cli gulp
@@ -49,14 +55,9 @@ npm i
 gulp
 ```
 
-Setup virtual hostname. Edit /etc/hosts and add this:
-```
-127.0.0.1 play.dev
-```
-
 ## How to run on devices
 
-Make sure rethinkdb is running.
+Make sure rethinkdb is running. (Once installed you run it with `rethinkdb` if it's not auto starting on boot)
 
 To run web development server (runs webpack dev server with react HMR)
 ```

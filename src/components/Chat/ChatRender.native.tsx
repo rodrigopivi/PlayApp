@@ -1,27 +1,13 @@
 import * as React from 'react-native'
 import * as Relay from 'react-relay'
 import { CreateMessageMutation } from '../../client/mutations/createMessage'
+import {Chat} from './index'
 const { Component, View, Text, StyleSheet, TextInput, ScrollView } = React
 const Button = require('apsl-react-native-button')
 const settings = require('../../../config/settings')
 
 // TODO: Refactor this metods to avoid code duplication with the web version of this component
-export default class ChatMessagesRender extends Component<any, any> {
-    private websocket
-    private pushMessagesToRelayStore
-
-    constructor(props, context) {
-        super(props, context)
-        this.state = { message: '', wsAlive: false }
-    }
-
-    public componentDidMount(): void {
-        if (typeof window !== 'undefined') {
-            this.pushMessagesToRelayStore = require('../../client/pushMessagesStore').default
-            this.setupWebsocketConnection()
-        }
-    }
-    public componentWillUnmount(): void { this.websocket.close() }
+export default class ChatRender extends Chat {
 
     public render() {
         let recentMessages = this.props.root.recentMessages
@@ -55,35 +41,7 @@ export default class ChatMessagesRender extends Component<any, any> {
             </View>
         )
     }
-
-    private sendMessage() {
-        if (this.state.message) {
-            Relay.Store.commitUpdate(new CreateMessageMutation({body: this.state.message}))
-            this.setState({message: ''})
-        }
-    }
-
-    private setupWebsocketConnection() {
-        console.log('[WS] Connecting...')
-        this.websocket = new WebSocket(`ws://${settings.hostname}:${settings.serverPort}/messages`)
-        this.websocket.onopen = () => {
-            this.setState({wsAlive: true})
-            this.websocket.onmessage = evt => {
-                const payload = JSON.parse(evt.data)
-                    let newMessage = Object.assign({}, payload.new_val, { user: payload.author });
-                    this.pushMessagesToRelayStore.dispatch({ type: 'ADD_MESSAGE', newMessage })
-                    this.props.relay.forceFetch()
-            }
-        }
-        this.websocket.onerror = evt => { console.log('[WS ERROR]', evt.message) }
-        this.websocket.onclose = (evt) => {
-            // Retry only if the disconnect event was not clean
-            setTimeout(() => this.setupWebsocketConnection(), 3000)
-            this.setState({wsAlive: false})
-        }
-    }
 }
-
 const styles = StyleSheet.create({
     container: { flex: 1, flexDirection: 'column' },
     body: {

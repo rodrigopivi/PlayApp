@@ -37,7 +37,7 @@ export class MessageController {
             thinky.r.table('Message').changes().map((message) => {
                 return message.merge({
                     // IMPORTANT NOTE: this pluck values are hardcoded, and they should
-                    // consider at least the graphql fragment for the real time messages component
+                    // consider at least the graphql fragment for the chat component (Chat/index.tsx)
                     author: thinky.r.table('User').get(message('new_val')('userId')).pluck('name', 'email', 'id')
                 })
             }).run().then(changes => {
