@@ -39,7 +39,7 @@ export class Chat extends React.Component<any, any> {
             this.setState({wsAlive: true})
             this.websocket.onmessage = evt => {
                 const payload = JSON.parse(evt.data)
-                    let newMessage = Object.assign({}, payload.new_val, { user: payload.author });
+                    let newMessage = Object.assign({}, payload.new_val, { user: payload.author })
                     this.pushMessagesToRelayStore.dispatch({ type: 'ADD_MESSAGE', newMessage })
                     this.props.relay.forceFetch()
             }

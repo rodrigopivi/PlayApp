@@ -1,12 +1,8 @@
 import * as React from 'react-native'
-import * as Relay from 'react-relay'
-import { CreateMessageMutation } from '../../client/mutations/createMessage'
 import {Chat} from './index'
-const { Component, View, Text, StyleSheet, TextInput, ScrollView } = React
+const { View, Text, StyleSheet, TextInput, ScrollView } = React
 const Button = require('apsl-react-native-button')
-const settings = require('../../../config/settings')
 
-// TODO: Refactor this metods to avoid code duplication with the web version of this component
 export default class ChatRender extends Chat {
 
     public render() {

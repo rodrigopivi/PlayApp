@@ -17,7 +17,10 @@ const nodeDefinitions = R.nodeDefinitions(globalId => {
 const MessageType = new GQL.GraphQLObjectType({
     name: 'Message',
     isTypeOf: (obj): boolean => {
-        try { new db.Message(obj).validate(); return true } catch (e) { return false }
+        try {
+            new db.Message(obj).validate()
+            return true
+        } catch (e) { return false }
     },
     fields: (): GQL.GraphQLFieldConfigMap => ({
         id: R.globalIdField('Message'),
@@ -26,7 +29,7 @@ const MessageType = new GQL.GraphQLObjectType({
         body: { type: GQL.GraphQLString },
         user: {
             type: UserType,
-            resolve: async (msg, args): Promise<any> => await db.User.get(msg.userId).run()
+            resolve: async (msg): Promise<any> => await db.User.get(msg.userId).run()
         }
     }),
     interfaces: [nodeDefinitions.nodeInterface]
@@ -37,7 +40,10 @@ const messageConnection = R.connectionDefinitions({nodeType: MessageType})
 const UserType = new GQL.GraphQLObjectType({
     name: 'User',
     isTypeOf: (obj): boolean => {
-        try { new db.User(obj).validate(); return true } catch (e) { return false }
+        try {
+            new db.User(obj).validate()
+            return true
+        } catch (e) { return false }
     },
     fields: (): GQL.GraphQLFieldConfigMap => ({
         id: R.globalIdField(),
@@ -48,7 +54,7 @@ const UserType = new GQL.GraphQLObjectType({
         messages: {
             type: messageConnection.connectionType,
             args: R.connectionArgs,
-            resolve: (user: any, args: any): Promise<R.Connection<any>> => {
+            resolve: (user, args): Promise<R.Connection<any>> => {
                 return R.connectionFromPromisedArray(db.Message.filter({ userId: user.id }).run(), args)
             }
         }
@@ -106,16 +112,16 @@ const RootQueryType = new GQL.GraphQLObjectType({
         },
         users: {
             type: new GQL.GraphQLList(UserType),
-            resolve: async (root, args): Promise<any> => await db.User.run()
+            resolve: async (): Promise<any> => await db.User.run()
         },
         messages: {
             type: new GQL.GraphQLList(MessageType),
-            resolve: async (root, args): Promise<any> => await db.Message.run()
+            resolve: async (): Promise<any> => await db.Message.run()
         },
         recentMessages: {
             type: new GQL.GraphQLList(MessageType),
             // args: { count: { type: new GQL.GraphQLNonNull(GQL.GraphQLInt) } },
-            resolve: async (root, args: any): Promise<any> => {
+            resolve: async (): Promise<any> => {
                 const messages = await db.Message.orderBy('date', db.thinky.r.desc('createdAt')).limit(3).run()
                 return messages.reverse()
             }

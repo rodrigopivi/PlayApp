@@ -1,6 +1,6 @@
 import * as React from 'react-native'
 import * as Relay from 'react-relay'
-import * as StateActions from '../../native/actions'
+import * as stateActions from '../../native/actions'
 import Login from '../Login'
 import SignUp from '../SignUp'
 import Chat from '../Chat'
@@ -15,13 +15,14 @@ class PlayAppRoute extends Relay.Route {
     public static queries: any = { root: () => Relay.QL`query { root }` }
     public static routeName: any = 'PlayAppRoute'
 }
+
 @connect(
     (state) => ({
         navigationState: state.navigationState,
         isAuthenticated: state.isAuthenticated,
         windowDimensions: state.windowDimensions
     }),
-    (dispatch) => ({actions: bindActionCreators(StateActions, dispatch)})
+    (dispatch) => ({actions: bindActionCreators(stateActions, dispatch)})
 )
 export default class MainLayoutRender extends Component<any, any> {
     constructor(props, context) {
@@ -106,7 +107,8 @@ export default class MainLayoutRender extends Component<any, any> {
                 return <Relay.RootContainer
                             Component={Chat}
                             route={new PlayAppRoute()}
-                            forceFetch={true} />
+                            forceFetch={true}
+                        />
             default:
                 return <Login />
         }

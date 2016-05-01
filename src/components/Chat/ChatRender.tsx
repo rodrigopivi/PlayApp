@@ -2,14 +2,15 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Card, CardActions, RaisedButton } from 'material-ui'
 import {Chat} from './index'
-const Helmet = require('react-helmet')
+// using require for TextField to be able to use the 'autoComplete' that is missing at d.ts
 const TextField = require('material-ui/lib/text-field')
+const Helmet = require('react-helmet')
 
 export default class ChatRender extends Chat {
 
     public componentDidMount(): void {
         if (typeof window !== 'undefined') { this.scrollMessagesListToBottom() }
-        super.componentDidMount();
+        super.componentDidMount()
     }
 
     public componentDidUpdate(): void { this.scrollMessagesListToBottom() }
@@ -35,6 +36,7 @@ export default class ChatRender extends Chat {
                             fullWidth={true}
                             value={this.state.message}
                             onChange={ (evt: any) => this.setState({message: evt.target.value}) }
+                            autoComplete='off'
                         />
                         <RaisedButton
                             primary={true}

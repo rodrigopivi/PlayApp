@@ -1,6 +1,6 @@
 import * as React from 'react-native'
 const { Alert, Component, StyleSheet, Text, View, TextInput, Image, ScrollView } = React
-import * as StateActions from '../../native/actions'
+import * as stateActions from '../../native/actions'
 const bindActionCreators = require('redux').bindActionCreators
 const connect = require('react-redux').connect
 const Button = require('apsl-react-native-button')
@@ -8,7 +8,7 @@ const settings = require('../../../config/settings')
 
 @connect(
     undefined,
-    (dispatch) => ({actions: bindActionCreators(StateActions, dispatch)})
+    (dispatch) => ({actions: bindActionCreators(stateActions, dispatch)})
 )
 export default class LoginRender extends Component<any, any> {
     constructor(props, context) {

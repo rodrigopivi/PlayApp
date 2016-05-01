@@ -24,11 +24,37 @@ Web, iOS and android apps running under the same codebase
 
 Server side rendering support thanks to isomorphic-relay and isomorphic-relay-router.
 
-Great real time support thanks to RethinkDB and Websockets.
+Great real time support thanks to RethinkDB and WebSockets. (using a temporal Relay hack to feed the store in real time).
 
 User registration and authentication using JWT with httpOnly cookies.
 
 Secured GraphQL endpoint.
+
+Relay for web and native clients.
+
+Native navigation using NavigationExperimental with redux for the native client-side state.
+
+## Architecture
+
+All the source, for the server, web client and native clients, is located at `./src/`
+This is the structure our source:
+
+`./client` Code for the native client, and the web app client, excluding components.
+`./server` Code for the NodeJS server only.
+`./shared` Code used by the web client and the server app (for server side rendering), excluding components.
+`./native` Code used by the native clients only.
+`./init` The entry point for the react application clients.
+
+```
+./components
+```
+All our custom components, this code may be used by the server for server-side rendering, and by the client platforms.
+
+Each component, have an `index.ts` file which is responsible for two things:
+
+- It may provide a base component class each target renderer class can extend so we can reuse code between web components and native components.
+
+- It should load the correct renderer component for each platform. ReactNative automatically knows when to load `.ios.js` files, or `.android.js`, or `.native.js` in an smart way. So requiring the render component by name is enough.
 
 ## What's next
 This is a WIP, and there are a lot of things to improve.
@@ -40,7 +66,7 @@ There is a bug with React-Native websockets implementation that is not sending t
 because of this the restricted access to the websocket has being disabled temporarily until this is fixed, a workaround
 would be to use the swift socket.io implementation.
 
-## Setup:
+## Setup
 Install Rethinkdb and nvm with node v5.9.0.
 
 Setup virtual hostname. Edit /etc/hosts and add this:

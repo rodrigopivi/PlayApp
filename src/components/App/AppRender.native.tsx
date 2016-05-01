@@ -1,14 +1,14 @@
 import * as React from 'react-native'
 const { Component, Image, Text, StyleSheet } = React
 import MainLayout from '../MainLayout'
-import * as StateActions from '../../native/actions'
+import * as stateActions from '../../native/actions'
 const bindActionCreators = require('redux').bindActionCreators
 const connect = require('react-redux').connect
 const settings = require('../../../config/settings')
 
 @connect(
     (state) => ({ mainTransitionActive: state.mainTransitionActive }),
-    (dispatch) => ({actions: bindActionCreators(StateActions, dispatch)})
+    (dispatch) => ({actions: bindActionCreators(stateActions, dispatch)})
 )
 class AppContainer extends Component<any, any> {
     constructor(props, context) {
@@ -19,7 +19,7 @@ class AppContainer extends Component<any, any> {
         // TODO: Use a custom component for loading
         if (this.props.mainTransitionActive) { return (
             <Image style={styles.transitionLoader} source={require('../../../public/nativeBG.jpg')} >
-                <Text style={{backgroundColor: 'transparent', color: '#fff'}}>Loading...</Text>
+                <Text style={styles.loadingText}>Loading...</Text>
             </Image>
         )}
         return <MainLayout />
@@ -43,8 +43,8 @@ class AppContainer extends Component<any, any> {
     }
 }
 
-const {Provider} = require('react-redux')
 import reducer from '../../native/reducer'
+const {Provider} = require('react-redux')
 const { createStore, applyMiddleware } = require('redux')
 const thunk = require('redux-thunk').default
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
@@ -61,5 +61,6 @@ export default class App extends React.Component<any, any> {
     }
 }
 const styles = StyleSheet.create({
-    transitionLoader: { flex: 1, alignItems: 'center', justifyContent: 'center', width: null, height: null }
+    transitionLoader: { flex: 1, alignItems: 'center', justifyContent: 'center', width: null, height: null },
+    loadingText: { backgroundColor: 'transparent', color: '#fff' }
 })

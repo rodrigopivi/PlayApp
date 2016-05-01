@@ -69,14 +69,14 @@ export default class SignUpRender extends React.Component<any, any> {
     }
 
     private async handleSignUpSubmit(evt) {
-        evt.preventDefault();
+        evt.preventDefault()
         const refs: any = this.refs
         const name = refs.name && refs.name.getValue()
         const email = refs.email && refs.email.getValue()
         const password = refs.password && refs.password.getValue()
         const confirmation = refs.confirmation && refs.confirmation.getValue()
         if (name && email && password && confirmation && password === confirmation) {
-            const formData = new FormData();
+            const formData = new FormData()
             formData.append('name', name)
             formData.append('email', email)
             formData.append('password', password)

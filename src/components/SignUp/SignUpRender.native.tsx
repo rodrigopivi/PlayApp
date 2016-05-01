@@ -1,6 +1,6 @@
 import * as React from 'react-native'
 const { Alert, Component, StyleSheet, Text, View, TextInput, Image, ScrollView } = React
-import * as StateActions from '../../native/actions'
+import * as stateActions from '../../native/actions'
 const bindActionCreators = require('redux').bindActionCreators
 const connect = require('react-redux').connect
 const Button = require('apsl-react-native-button')
@@ -8,7 +8,7 @@ const settings = require('../../../config/settings')
 
 @connect(
     undefined,
-    (dispatch) => ({ actions: bindActionCreators(StateActions, dispatch) })
+    (dispatch) => ({ actions: bindActionCreators(stateActions, dispatch) })
 )
 export default class SignUpRender extends Component<any, any> {
     constructor(props, context) {
@@ -16,6 +16,7 @@ export default class SignUpRender extends Component<any, any> {
         this.state = {name: '', email: '', password: '', passwordConfirmation: ''}
     }
     public render() {
+        const placeholderTextColor = '#BBB'
         return (
             <Image
                 style={styles.container}
@@ -25,7 +26,7 @@ export default class SignUpRender extends Component<any, any> {
                         <TextInput
                             style={styles.input}
                             placeholder='Name'
-                            placeholderTextColor='#BBB'
+                            placeholderTextColor={placeholderTextColor}
                             autoCorrect={false}
                             onChangeText={(text) => this.setState({name: text})}
                             value={this.state.name}
@@ -36,7 +37,7 @@ export default class SignUpRender extends Component<any, any> {
                             autoCapitalize='none'
                             autoCorrect={false}
                             keyboardType='email-address'
-                            placeholderTextColor='#BBB'
+                            placeholderTextColor={placeholderTextColor}
                             onChangeText={(text) => this.setState({email: text})}
                             value={this.state.email}
                         />
@@ -45,7 +46,7 @@ export default class SignUpRender extends Component<any, any> {
                             password={true}
                             secureTextEntry={true}
                             placeholder='Password'
-                            placeholderTextColor='#BBB'
+                            placeholderTextColor={placeholderTextColor}
                             onChangeText={(text) => this.setState({password: text})}
                             value={this.state.password}
                         />
@@ -54,7 +55,7 @@ export default class SignUpRender extends Component<any, any> {
                             password={true}
                             secureTextEntry={true}
                             placeholder='Password confirmation'
-                            placeholderTextColor='#BBB'
+                            placeholderTextColor={placeholderTextColor}
                             onChangeText={(text) => this.setState({confirmation: text})}
                             value={this.state.confirmation}
                         />
@@ -75,7 +76,7 @@ export default class SignUpRender extends Component<any, any> {
     private async signUp() {
         const {name, email, password, confirmation} = this.state
         if (name && email && password && confirmation && password === confirmation) {
-            const formData = new FormData();
+            const formData = new FormData()
             formData.append('name', name)
             formData.append('email', email)
             formData.append('password', password)

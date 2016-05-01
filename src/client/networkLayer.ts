@@ -16,14 +16,14 @@ class CustomNetworkLayer extends Relay.DefaultNetworkLayer {
         if (queryRegexp.test(currentQueryString)) {
             return this.sendInterceptedRecentMessagesResponse(request)
         }
-        return super._sendQuery(request);
+        return super._sendQuery(request)
     }
 
     private sendInterceptedRecentMessagesResponse(request) {
         return new Promise((resolve, reject) => {
             // Note: tried to use primeCache, works fine for the first req, but fails for the 2nd
             // (Relay.Store as any).primeCache({query: request._query}, readyState => {
-            let data: any[] = [];
+            let data: any[] = []
             let cachedData = (Relay.Store as any).readQuery(request._query)
             if (cachedData && cachedData.length && cachedData[0] && cachedData[0].recentMessages) {
                 const messagesToPush = pushMessagesStore.getState().messagesToPush
